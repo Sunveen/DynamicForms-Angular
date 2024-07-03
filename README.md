@@ -1,27 +1,75 @@
-# DynamicForm
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
+Dynamic Forms with Angular and GraphQL
+This project demonstrates how to create a dynamic, server-driven form in an Angular application using GraphQL. The form structure, including validation rules and messages, is retrieved from a backend server, allowing for flexible and easily maintainable forms.
 
-## Development server
+Features
+Dynamic Form Generation: Forms are generated dynamically based on configuration data received from a GraphQL API.
+Field Types Supported: Includes input fields, text areas, dropdowns, and more.
+Custom Validators: Supports custom validation logic, including regex patterns.
+Dependency Management: Fields can be enabled or disabled based on the values of other fields.
+Validation Messages: Custom validation messages are dynamically retrieved and displayed based on server response.
+Technologies Used
+Angular: A platform and framework for building client-side applications using HTML and TypeScript.
+GraphQL: A query language for your API, and a server-side runtime for executing queries.
+ngx-formly: An Angular module that makes it easy to create dynamic forms.
+Getting Started
+Prerequisites
+Node.js (v12 or later)
+Angular CLI
+Installation
+Clone the repository:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+sh
+Copy code
+git clone https://github.com/Sunveen/DynamicForms-Angular.git
+cd dynamic-forms-angular-graphql
+Install dependencies:
 
-## Code scaffolding
+sh
+Copy code
+npm install
+Run the application:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+sh
+Copy code
+ng serve
+Open your browser and navigate to http://localhost:4200.
 
-## Build
+Project Structure
+src/app: Contains the main application code.
+components: Contains the dynamic form and form field components.
+services: Contains the GraphQL service(Mock data for now) for fetching form data.
+models: Contains TypeScript interfaces for form data.
+Usage
+Dynamic Form Component: The DynamicFormComponent fetches form configuration data from the GraphQL API(Mock data for now) and generates the form dynamically.
+Form Field Component: The FormFieldComponent renders individual form fields based on the configuration.
+GraphQL Service: The GraphqlService is responsible for making GraphQL queries(Mock data for now) to fetch the form configuration data.
+Example Configuration Data
+The form configuration data is expected to be in the following format:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+json
+Copy code
+{
+  "data": {
+    "form": {
+      "sections": [
+        {
+          "name": "Personal Information",
+          "fields": [
+            { "type": "text", "label": "First Name", "required": true, "validationMessages": { "required": "First Name is required" } },
+            { "type": "text", "label": "Last Name", "required": true, "validationMessages": { "required": "Last Name is required" } },
+            { "type": "text", "label": "Contact Number", "required": true, "regex": "^[0-9]{10}$", "validationMessages": { "required": "Contact Number is required", "pattern": "Invalid Contact Number format" } },
+            { "type": "textarea", "label": "Address" }
+          ]
+        },
+        {
+          "name": "Preferences",
+          "fields": [
+            { "type": "dropdown", "label": "Favorite Color", "options": [ { "value": "red", "label": "Red" }, { "value": "green", "label": "Green" }, { "value": "blue", "label": "Blue" } ] },
+            { "type": "text", "label": "Additional Info", "dependency": "Favorite Color" }
+          ]
+        }
+      ]
+    }
+  }
+}

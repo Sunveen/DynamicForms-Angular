@@ -1,0 +1,7 @@
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="dynamic-form">
+    <formly-form [model]="model" [fields]="fields" [form]="form">
+    </formly-form>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+  </form>
+  
+  
