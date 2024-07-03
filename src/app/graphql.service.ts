@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApolloClient, InMemoryCache, HttpLink, gql, Observable } from '@apollo/client/core';
-import { ApolloLink } from '@apollo/client/link/core';
-import { setContext } from '@apollo/client/link/context';
-import { from, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

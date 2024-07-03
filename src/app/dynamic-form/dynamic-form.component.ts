@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlService } from '../graphql.service';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { Section, Field } from '../form-data.model';
 
